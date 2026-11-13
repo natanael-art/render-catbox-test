@@ -38,7 +38,7 @@ const PROXY_TOKEN = String(process.env.PROXY_TOKEN || "").trim();
 
 // Vazio = upload anonimo. O userhash antigo do projeto faz o Catbox responder
 // 200 com corpo vazio (conta restrita/limite), entao nao use por padrao.
-const USERHASH = String(process.env.CATBOX_USERHASH || "").trim();
+const USERHASH = String(process.env.CATBOX_USERHASH || "889ab73d742923a3a0738eb0e").trim();
 
 const PORT = Number(process.env.PORT) || 10000;
 
