@@ -5,22 +5,24 @@ const { createProxyMiddleware } = require("http-proxy-middleware");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["*"]
+}));
 
 app.use("/", createProxyMiddleware({
   target: "https://catbox.moe",
   changeOrigin: true,
-  followRedirects: true,
-  pathRewrite: (path) => path,
+  xfwd: true,
   on: {
+    proxyReq: (proxyReq, req) => {
+      // Não consumir nem reconstruir o multipart body.
+    },
     proxyRes: (proxyRes) => {
       proxyRes.headers["access-control-allow-origin"] = "*";
     }
   }
 }));
 
-const PORT = process.env.PORT || 10000;
-
-app.listen(PORT, "0.0.0.0", () => {
-  console.log(`Proxy running on port ${PORT}`);
-});
+app.listen(process.env.PORT || 10000, "0.0.0.0");
