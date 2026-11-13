@@ -1,0 +1,13 @@
+{
+  "name": "render-catbox-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Testa se o egress do Render consegue subir arquivos no Catbox",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
